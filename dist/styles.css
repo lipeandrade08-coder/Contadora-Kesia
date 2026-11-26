@@ -1070,7 +1070,14 @@ footer {
 
 .footer-bottom strong {
   font-weight: 600;
-  color: var(--caramel)
+  color: var(--caramel);
+  transition: color .2s
+}
+
+.footer-bottom a:hover strong {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px
 }
 
 .scenarios {
