@@ -326,7 +326,8 @@ h1 em {
 }
 
 .portrait-frame {
-  aspect-ratio: 4 / 4.8;
+  position: relative;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 220px 220px 4px 4px;
   background: var(--cream);
@@ -334,14 +335,66 @@ h1 em {
   box-shadow: 0 22px 48px rgba(57, 45, 38, .08)
 }
 
-.portrait-frame img,
-.portrait-frame video {
+.portrait-frame .portrait-slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 8%;
-  transform: none;
-  transform-origin: top center
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 5.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+  pointer-events: none
+}
+
+.portrait-frame .portrait-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 1
+}
+
+.portrait-frame .slide-1 {
+  object-position: center 25%
+}
+
+.portrait-frame .slide-2 {
+  object-position: center 65%
+}
+
+.portrait-frame .slide-3 {
+  object-position: center 82%
+}
+
+.portrait-dots {
+  position: absolute;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 8px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: rgba(57, 45, 38, .28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px)
+}
+
+.portrait-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  border: 0;
+  padding: 0;
+  background: rgba(250, 247, 242, .5);
+  cursor: pointer;
+  transition: width .35s ease, background .35s ease
+}
+
+.portrait-dot.is-active {
+  width: 20px;
+  background: var(--paper)
 }
 
 .portrait-note {
@@ -1646,13 +1699,12 @@ footer {
   }
 
   .portrait-frame {
-    aspect-ratio: 4 / 4.8;
+    aspect-ratio: 4 / 5;
     border-radius: 190px 190px 4px 4px
   }
 
-  .portrait-frame img,
-  .portrait-frame video {
-    transform: none
+  .portrait-dots {
+    bottom: 40px
   }
 
   .portrait-topline {

@@ -45,14 +45,42 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) =
   observer.observe(el);
 });
 
-// Parallax na imagem/vídeo principal
-const portraitVideo = document.querySelector('.portrait-frame video');
-window.addEventListener('scroll', () => {
-  if (portraitVideo && window.innerWidth > 720) {
-    const scroll = window.scrollY;
-    portraitVideo.style.transform = `translateY(${scroll * 0.15}px)`;
-  }
-});
+// Slideshow com efeito Crossfade (Fader) no Hero
+const heroSlides = document.querySelectorAll('.portrait-slide');
+const heroDots = document.querySelectorAll('.portrait-dot');
+
+if (heroSlides.length > 1) {
+  let currentSlide = 0;
+  let slideTimer = null;
+
+  const showSlide = (index) => {
+    heroSlides[currentSlide].classList.remove('is-active');
+    if (heroDots[currentSlide]) heroDots[currentSlide].classList.remove('is-active');
+    currentSlide = (index + heroSlides.length) % heroSlides.length;
+    heroSlides[currentSlide].classList.add('is-active');
+    if (heroDots[currentSlide]) heroDots[currentSlide].classList.add('is-active');
+  };
+
+  const startSlideshow = () => {
+    stopSlideshow();
+    slideTimer = setInterval(() => {
+      showSlide(currentSlide + 1);
+    }, 4200);
+  };
+
+  const stopSlideshow = () => {
+    if (slideTimer) clearInterval(slideTimer);
+  };
+
+  heroDots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      showSlide(idx);
+      startSlideshow();
+    });
+  });
+
+  startSlideshow();
+}
 
 // Intercepta cliques no WhatsApp para abrir o modal
 const waLinks = document.querySelectorAll('a[href^="https://wa.me"]');
