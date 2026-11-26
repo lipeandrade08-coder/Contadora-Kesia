@@ -326,8 +326,7 @@ h1 em {
 }
 
 .portrait-frame {
-  position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 4.8;
   overflow: hidden;
   border-radius: 220px 220px 4px 4px;
   background: var(--cream);
@@ -335,76 +334,14 @@ h1 em {
   box-shadow: 0 22px 48px rgba(57, 45, 38, .08)
 }
 
-.portrait-frame .portrait-slide {
-  position: absolute;
-  inset: 0;
+.portrait-frame img,
+.portrait-frame video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  z-index: 0;
-  transform: scale(1.015);
-  transition: none;
-  will-change: opacity, transform;
-  pointer-events: none;
-  backface-visibility: hidden
-}
-
-.portrait-frame .portrait-slide.is-leaving {
-  opacity: 1;
-  z-index: 1;
-  transform: scale(1);
-  transition: none
-}
-
-.portrait-frame .portrait-slide.is-active {
-  opacity: 1;
-  z-index: 2;
-  transform: scale(1);
-  transition: opacity 2.2s cubic-bezier(0.25, 0.1, 0.25, 1), transform 7s cubic-bezier(0.22, 1, 0.36, 1)
-}
-
-.portrait-frame .slide-1 {
-  object-position: center 25%
-}
-
-.portrait-frame .slide-2 {
-  object-position: center 65%
-}
-
-.portrait-frame .slide-3 {
-  object-position: center 82%
-}
-
-.portrait-dots {
-  position: absolute;
-  bottom: 44px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 3;
-  display: flex;
-  gap: 7px;
-  padding: 5px 10px;
-  border-radius: 999px;
-  background: rgba(57, 45, 38, .18);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px)
-}
-
-.portrait-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 999px;
-  border: 0;
-  padding: 0;
-  background: rgba(250, 247, 242, .45);
-  cursor: pointer;
-  transition: width .6s cubic-bezier(0.22, 1, 0.36, 1), background .6s ease
-}
-
-.portrait-dot.is-active {
-  width: 18px;
-  background: rgba(250, 247, 242, .92)
+  object-position: center 8%;
+  transform: none;
+  transform-origin: top center
 }
 
 .portrait-note {
@@ -1709,12 +1646,13 @@ footer {
   }
 
   .portrait-frame {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 4 / 4.8;
     border-radius: 190px 190px 4px 4px
   }
 
-  .portrait-dots {
-    bottom: 40px
+  .portrait-frame img,
+  .portrait-frame video {
+    transform: none
   }
 
   .portrait-topline {

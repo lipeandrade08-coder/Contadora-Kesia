@@ -45,65 +45,6 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) =
   observer.observe(el);
 });
 
-// Slideshow com efeito Crossfade (Fader) suave e delicado no Hero
-const heroSlides = document.querySelectorAll('.portrait-slide');
-const heroDots = document.querySelectorAll('.portrait-dot');
-
-if (heroSlides.length > 1) {
-  let currentSlide = 0;
-  let slideTimer = null;
-  let leaveTimeout = null;
-
-  const showSlide = (index) => {
-    const nextSlide = (index + heroSlides.length) % heroSlides.length;
-    if (nextSlide === currentSlide) return;
-
-    const prevSlide = currentSlide;
-    currentSlide = nextSlide;
-
-    heroSlides.forEach((slide, i) => {
-      if (i !== prevSlide && i !== currentSlide) {
-        slide.classList.remove('is-active', 'is-leaving');
-      }
-    });
-
-    // Mantém a foto anterior visível por baixo enquanto a nova surge suavemente por cima
-    heroSlides[prevSlide].classList.remove('is-active');
-    heroSlides[prevSlide].classList.add('is-leaving');
-
-    heroSlides[currentSlide].classList.remove('is-leaving');
-    heroSlides[currentSlide].classList.add('is-active');
-
-    if (heroDots[prevSlide]) heroDots[prevSlide].classList.remove('is-active');
-    if (heroDots[currentSlide]) heroDots[currentSlide].classList.add('is-active');
-
-    if (leaveTimeout) clearTimeout(leaveTimeout);
-    leaveTimeout = setTimeout(() => {
-      heroSlides[prevSlide].classList.remove('is-leaving');
-    }, 2250);
-  };
-
-  const startSlideshow = () => {
-    stopSlideshow();
-    slideTimer = setInterval(() => {
-      showSlide(currentSlide + 1);
-    }, 5600);
-  };
-
-  const stopSlideshow = () => {
-    if (slideTimer) clearInterval(slideTimer);
-  };
-
-  heroDots.forEach((dot, idx) => {
-    dot.addEventListener('click', () => {
-      showSlide(idx);
-      startSlideshow();
-    });
-  });
-
-  startSlideshow();
-}
-
 // Intercepta cliques no WhatsApp para abrir o modal
 const waLinks = document.querySelectorAll('a[href^="https://wa.me"]');
 const waModal = document.getElementById('wa-modal');
