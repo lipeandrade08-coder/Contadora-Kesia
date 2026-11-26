@@ -642,19 +642,53 @@
         <span>@contadorakesiaaf</span>
       </a>
     </div>
+    <div class="container footer-legal" aria-label="Informações legais, direitos e privacidade">
+      <div class="footer-legal-grid">
+        <div class="footer-legal-item">
+          <h4>Direitos Autorais e Marca</h4>
+          <p>Todo o conteúdo deste site — logotipo KF, identidade visual, textos, layout e fotografias — é protegido pela
+            Lei nº 9.610/1998. É proibida a reprodução total ou parcial sem autorização prévia por escrito.</p>
+        </div>
+        <div class="footer-legal-item">
+          <h4>Privacidade e Dados (LGPD)</h4>
+          <p>Em conformidade com a Lei nº 13.709/2018 (LGPD), este site não armazena dados pessoais em banco próprio nem
+            utiliza cookies de rastreamento ou publicidade. As informações do pré-atendimento são enviadas por você
+            diretamente ao WhatsApp para atendimento contábil.</p>
+        </div>
+        <div class="footer-legal-item">
+          <h4>Transparência e Natureza Informativa</h4>
+          <p>Os conteúdos publicados têm caráter informativo e não substituem análise contábil ou tributária individual.
+            O acesso ao site utiliza conexão segura (HTTPS) e registros técnicos padrão de servidor (Marco Civil da
+            Internet, Lei nº 12.965/2014).</p>
+        </div>
+      </div>
+      <div class="footer-legal-bar">
+        <div class="footer-legal-links" role="group" aria-label="Documentos legais">
+          <button type="button" class="legal-link" data-open-legal="privacidade">Política de Privacidade (LGPD)</button>
+          <span aria-hidden="true">·</span>
+          <button type="button" class="legal-link" data-open-legal="termos">Termos de Uso</button>
+          <span aria-hidden="true">·</span>
+          <button type="button" class="legal-link" data-open-legal="dados">Cookies e Direitos do Titular</button>
+        </div>
+        <span class="footer-dpo">Canal de atendimento e dados (LGPD): <a
+            href="https://wa.me/5512997462143?text=Ol%C3%A1%2C%20Kesia%21%20Gostaria%20de%20falar%20sobre%20meus%20dados%20ou%20privacidade%20(LGPD)."
+            data-direct-wa target="_blank" rel="noopener noreferrer">(12) 99746-2143</a></span>
+      </div>
+    </div>
     <div class="container footer-bottom">
-      <span>© <span id="year">2026</span> Kesia Feitosa. Todos os direitos reservados.</span>
+      <span>© <span id="year">2026</span> Kesia Feitosa — Contadora. Todos os direitos reservados.</span>
       <span>Abertura · Regularização · Contabilidade mensal · Baixa</span>
       <span>Desenvolvido por <a href="https://www.instagram.com/2typeofc/" target="_blank"
           rel="noopener noreferrer"><strong>2Type (@2typeofc)</strong></a></span>
     </div>
   </footer>
-  <div class="whatsapp-modal" id="wa-modal" aria-hidden="true">
+  <div class="whatsapp-modal" id="wa-modal" role="dialog" aria-modal="true" aria-labelledby="wa-modal-title"
+    aria-hidden="true">
     <div class="modal-overlay" data-close-modal></div>
     <div class="modal-content">
-      <button class="modal-close" data-close-modal aria-label="Fechar formulário">&times;</button>
+      <button type="button" class="modal-close" data-close-modal aria-label="Fechar formulário">&times;</button>
       <div class="modal-header">
-        <h3>Quase lá!</h3>
+        <h3 id="wa-modal-title">Quase lá!</h3>
         <p>Para eu te ajudar mais rápido, me conte um pouco sobre sua situação antes de irmos para o WhatsApp.</p>
       </div>
       <form id="wa-form">
@@ -686,10 +720,95 @@
           <textarea id="wa-details" rows="3" required
             placeholder="Qual o seu ramo de atuação? O que precisa resolver hoje?"></textarea>
         </div>
+        <p class="form-lgpd-note">Seus dados não são armazenados no site; ao continuar, a mensagem é enviada diretamente
+          por você via WhatsApp conforme nossa <button type="button" class="inline-legal-link"
+            data-open-legal="privacidade">Política de Privacidade (LGPD)</button>.</p>
         <button type="submit" class="button wa-form-btn"><svg class="icon">
             <use href="#i-chat" />
           </svg> Ir para o WhatsApp</button>
       </form>
+    </div>
+  </div>
+  <div class="site-modal" id="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title"
+    aria-hidden="true">
+    <div class="modal-overlay" data-close-legal></div>
+    <div class="modal-content modal-content-wide">
+      <button type="button" class="modal-close" data-close-legal aria-label="Fechar aviso legal">&times;</button>
+      <div class="modal-header">
+        <h3 id="legal-modal-title">Privacidade, Direitos e Dados</h3>
+        <p>Transparência sobre o funcionamento de <strong>www.contadorakesiaaf.com.br</strong>, proteção de dados
+          pessoais (LGPD) e direitos autorais.</p>
+      </div>
+      <div class="legal-tabs" role="tablist" aria-label="Seções legais">
+        <button type="button" class="legal-tab is-active" role="tab" aria-selected="true"
+          data-legal-tab="privacidade">Privacidade (LGPD)</button>
+        <button type="button" class="legal-tab" role="tab" aria-selected="false" data-legal-tab="termos">Termos de
+          Uso</button>
+        <button type="button" class="legal-tab" role="tab" aria-selected="false" data-legal-tab="dados">Cookies e
+          Direitos</button>
+      </div>
+      <div class="legal-modal-body">
+        <section class="legal-panel is-active" data-legal-panel="privacidade">
+          <h4>1. Controladora e Canal de Atendimento</h4>
+          <p>Este site é mantido por <strong>Kesia Feitosa — Contadora</strong>, com atendimento contábil digital em todo
+            o Brasil pelo domínio <strong>www.contadorakesiaaf.com.br</strong> e canal oficial de atendimento via
+            WhatsApp: <strong>(12) 99746-2143</strong>.</p>
+          <h4>2. Quais dados são tratados e para qual finalidade</h4>
+          <p>Este site não exige cadastro nem mantém banco de dados de visitantes. Ao clicar em qualquer botão de
+            contato, você pode preencher opcionalmente o formulário de pré-atendimento (nome, situação do CNPJ, serviço
+            desejado e resumo da necessidade). Esses dados são processados apenas localmente no seu navegador para
+            montar a mensagem que você mesmo envia ao WhatsApp, com a finalidade exclusiva de agilizar seu atendimento e
+            diagnóstico contábil (execução de procedimentos preliminares ou atendimento mediante sua solicitação — Art.
+            7º, I e V da Lei nº 13.709/2018).</p>
+          <h4>3. Compartilhamento e Serviços Terceiros</h4>
+          <p>Não vendemos, alugamos ou compartilhamos seus dados para fins comerciais ou publicitários. Ao optar por
+            iniciar conversa no WhatsApp ou acessar publicações no Instagram, aplicam-se também as políticas de
+            privacidade dessas plataformas. Para carregamento visual, o site utiliza fontes tipográficas do Google Fonts
+            e hospedagem web segura (HTTPS), que tratam apenas dados técnicos de requisição de rede.</p>
+          <h4>4. Segurança e Armazenamento</h4>
+          <p>A navegação ocorre em ambiente criptografado (HTTPS/TLS). Informações enviadas em atendimento pelo WhatsApp
+            são tratadas com sigilo profissional contábil e mantidas apenas pelo tempo necessário ao atendimento ou
+            cumprimento de obrigações legais e regulatórias.</p>
+        </section>
+        <section class="legal-panel" data-legal-panel="termos" hidden>
+          <h4>1. Direitos Autorais e Propriedade Intelectual</h4>
+          <p>Todo o material presente neste site — incluindo a marca <strong>Kesia Feitosa</strong>, monograma e
+            logotipo KF, fotografias, identidade visual, textos explicativos, estrutura e código — é de titularidade
+            exclusiva de seus respectivos autores e protegido pela Lei de Direitos Autorais (Lei nº 9.610/1998) e pela
+            Lei de Propriedade Industrial (Lei nº 9.279/1996). É vedada a cópia, reprodução, modificação ou exploração
+            comercial sem autorização expressa.</p>
+          <h4>2. Caráter Informativo do Conteúdo</h4>
+          <p>As explicações sobre abertura de CNPJ, MEI, ME, contratação (MEI x CLT), planejamento tributário e
+            obrigações fiscais presentes no site e nas redes sociais têm objetivo educativo e informativo. A legislação
+            tributária brasileira sofre alterações periódicas; por isso, decisões empresariais devem ser tomadas após
+            análise individualizada de cada caso.</p>
+          <h4>3. Links Externos e Disponibilidade</h4>
+          <p>O site contém links para canais externos oficiais (WhatsApp e Instagram). Embora mantenhamos os links
+            atualizados, não nos responsabilizamos por instabilidades ou políticas próprias das plataformas externas.
+            Estes Termos podem ser atualizados a qualquer momento para refletir melhorias no atendimento ou mudanças
+            legais, prevalecendo a legislação brasileira.</p>
+        </section>
+        <section class="legal-panel" data-legal-panel="dados" hidden>
+          <h4>1. Política de Cookies e Registros de Acesso</h4>
+          <p>Este site <strong>não utiliza cookies de publicidade, rastreamento comportamental ou perfilamento</strong>.
+            A infraestrutura de hospedagem pode registrar temporariamente informações técnicas padrão de acesso (como
+            endereço IP, data, hora e navegador) exclusivamente para garantir estabilidade, segurança contra ataques e
+            cumprimento do Marco Civil da Internet (Lei nº 12.965/2014).</p>
+          <h4>2. Seus Direitos como Titular de Dados (Art. 18 da LGPD)</h4>
+          <p>A qualquer momento, você pode exercer gratuitamente seus direitos previstos na Lei Geral de Proteção de
+            Dados (Lei nº 13.709/2018), incluindo:</p>
+          <ul>
+            <li>Confirmação da existência de tratamento e acesso aos seus dados fornecidos em atendimento;</li>
+            <li>Correção de dados incompletos, inexatos ou desatualizados;</li>
+            <li>Anonimização, bloqueio ou eliminação de dados desnecessários ou excessivos;</li>
+            <li>Eliminação dos dados tratados com seu consentimento e revogação do consentimento;</li>
+            <li>Informação sobre eventual compartilhamento e sobre a possibilidade de não fornecer consentimento.</li>
+          </ul>
+          <h4>3. Como Solicitar</h4>
+          <p>Para exercer qualquer direito relacionado aos seus dados pessoais ou tirar dúvidas sobre privacidade, entre
+            em contato diretamente pelo WhatsApp oficial <strong>(12) 99746-2143</strong>.</p>
+        </section>
+      </div>
     </div>
   </div>
 </body>

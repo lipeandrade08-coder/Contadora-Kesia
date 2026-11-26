@@ -52,6 +52,7 @@ const waForm = document.getElementById('wa-form');
 const waServiceSelect = document.getElementById('wa-service');
 
 waLinks.forEach(link => {
+  if (link.hasAttribute('data-direct-wa')) return;
   link.addEventListener('click', (e) => {
     e.preventDefault();
     // Pre-seleciona a opção baseada no link clicado
@@ -86,4 +87,60 @@ waForm.addEventListener('submit', (e) => {
   window.open(`https://wa.me/5512997462143?text=${encodedMsg}`, '_blank');
   waModal.setAttribute('aria-hidden', 'true');
   waForm.reset();
+});
+
+// Modal de Privacidade (LGPD), Termos de Uso e Direitos
+const legalModal = document.getElementById('legal-modal');
+const legalTabs = document.querySelectorAll('[data-legal-tab]');
+const legalPanels = document.querySelectorAll('[data-legal-panel]');
+
+function setLegalTab(tabName) {
+  legalTabs.forEach((tab) => {
+    const active = tab.dataset.legalTab === tabName;
+    tab.classList.toggle('is-active', active);
+    tab.setAttribute('aria-selected', String(active));
+  });
+  legalPanels.forEach((panel) => {
+    const active = panel.dataset.legalPanel === tabName;
+    panel.classList.toggle('is-active', active);
+    panel.hidden = !active;
+  });
+}
+
+function openLegalModal(tabName = 'privacidade') {
+  if (!legalModal) return;
+  if (waModal && waModal.getAttribute('aria-hidden') === 'false') {
+    waModal.setAttribute('aria-hidden', 'true');
+  }
+  setLegalTab(tabName);
+  legalModal.setAttribute('aria-hidden', 'false');
+}
+
+function closeLegalModal() {
+  if (legalModal) legalModal.setAttribute('aria-hidden', 'true');
+}
+
+document.querySelectorAll('[data-open-legal]').forEach((trigger) => {
+  trigger.addEventListener('click', () => {
+    openLegalModal(trigger.dataset.openLegal);
+  });
+});
+
+legalTabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    setLegalTab(tab.dataset.legalTab);
+  });
+});
+
+document.querySelectorAll('[data-close-legal]').forEach((btn) => {
+  btn.addEventListener('click', closeLegalModal);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return;
+  if (legalModal && legalModal.getAttribute('aria-hidden') === 'false') {
+    closeLegalModal();
+  } else if (waModal && waModal.getAttribute('aria-hidden') === 'false') {
+    waModal.setAttribute('aria-hidden', 'true');
+  }
 });
