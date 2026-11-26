@@ -342,16 +342,26 @@ h1 em {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transform: scale(1.04);
-  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 5.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 0;
+  transform: scale(1.015);
+  transition: none;
   will-change: opacity, transform;
-  pointer-events: none
+  pointer-events: none;
+  backface-visibility: hidden
+}
+
+.portrait-frame .portrait-slide.is-leaving {
+  opacity: 1;
+  z-index: 1;
+  transform: scale(1);
+  transition: none
 }
 
 .portrait-frame .portrait-slide.is-active {
   opacity: 1;
+  z-index: 2;
   transform: scale(1);
-  z-index: 1
+  transition: opacity 2.2s cubic-bezier(0.25, 0.1, 0.25, 1), transform 7s cubic-bezier(0.22, 1, 0.36, 1)
 }
 
 .portrait-frame .slide-1 {
@@ -371,30 +381,30 @@ h1 em {
   bottom: 44px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 3;
   display: flex;
-  gap: 8px;
-  padding: 6px 11px;
+  gap: 7px;
+  padding: 5px 10px;
   border-radius: 999px;
-  background: rgba(57, 45, 38, .28);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px)
+  background: rgba(57, 45, 38, .18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px)
 }
 
 .portrait-dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 999px;
   border: 0;
   padding: 0;
-  background: rgba(250, 247, 242, .5);
+  background: rgba(250, 247, 242, .45);
   cursor: pointer;
-  transition: width .35s ease, background .35s ease
+  transition: width .6s cubic-bezier(0.22, 1, 0.36, 1), background .6s ease
 }
 
 .portrait-dot.is-active {
-  width: 20px;
-  background: var(--paper)
+  width: 18px;
+  background: rgba(250, 247, 242, .92)
 }
 
 .portrait-note {

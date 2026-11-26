@@ -45,27 +45,49 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) =
   observer.observe(el);
 });
 
-// Slideshow com efeito Crossfade (Fader) no Hero
+// Slideshow com efeito Crossfade (Fader) suave e delicado no Hero
 const heroSlides = document.querySelectorAll('.portrait-slide');
 const heroDots = document.querySelectorAll('.portrait-dot');
 
 if (heroSlides.length > 1) {
   let currentSlide = 0;
   let slideTimer = null;
+  let leaveTimeout = null;
 
   const showSlide = (index) => {
-    heroSlides[currentSlide].classList.remove('is-active');
-    if (heroDots[currentSlide]) heroDots[currentSlide].classList.remove('is-active');
-    currentSlide = (index + heroSlides.length) % heroSlides.length;
+    const nextSlide = (index + heroSlides.length) % heroSlides.length;
+    if (nextSlide === currentSlide) return;
+
+    const prevSlide = currentSlide;
+    currentSlide = nextSlide;
+
+    heroSlides.forEach((slide, i) => {
+      if (i !== prevSlide && i !== currentSlide) {
+        slide.classList.remove('is-active', 'is-leaving');
+      }
+    });
+
+    // Mantém a foto anterior visível por baixo enquanto a nova surge suavemente por cima
+    heroSlides[prevSlide].classList.remove('is-active');
+    heroSlides[prevSlide].classList.add('is-leaving');
+
+    heroSlides[currentSlide].classList.remove('is-leaving');
     heroSlides[currentSlide].classList.add('is-active');
+
+    if (heroDots[prevSlide]) heroDots[prevSlide].classList.remove('is-active');
     if (heroDots[currentSlide]) heroDots[currentSlide].classList.add('is-active');
+
+    if (leaveTimeout) clearTimeout(leaveTimeout);
+    leaveTimeout = setTimeout(() => {
+      heroSlides[prevSlide].classList.remove('is-leaving');
+    }, 2250);
   };
 
   const startSlideshow = () => {
     stopSlideshow();
     slideTimer = setInterval(() => {
       showSlide(currentSlide + 1);
-    }, 4200);
+    }, 5600);
   };
 
   const stopSlideshow = () => {
